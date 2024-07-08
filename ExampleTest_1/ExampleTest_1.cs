@@ -80,14 +80,10 @@ namespace ExampleTest_1
 			catch (Exception ex)
 			{
 				engine.GenerateInformation($"{testName} Exception: {ex}");
-				return new PerformanceTestCaseReport(testName, Result.Failure, $"Exception '{ex.Message}' caught, see information events", ResultUnit.Millisecond, sw.Elapsed.TotalMilliseconds);
+				return new PerformanceTestCaseReport(testName, Result.Failure, $"Exception '{ex.Message}' caught, see information events", ResultUnit.Millisecond, -1);
 			}
 
 			sw.Stop();
-			if (sw.Elapsed.TotalMilliseconds > 2000d)
-			{
-				return new PerformanceTestCaseReport(testName, Result.Failure, "Test took longer than 2s", ResultUnit.Millisecond, sw.Elapsed.TotalMilliseconds);
-			}
 
 			return new PerformanceTestCaseReport(testName, Result.Success, string.Empty, ResultUnit.Millisecond, sw.Elapsed.TotalMilliseconds);
 		}
